@@ -1,8 +1,9 @@
 import { execFile } from 'node:child_process'
-import {} from 'simple-git'
+import {ResetMode, simpleGit} from 'simple-git'
 
-const git: SimpleGit = simpleGit('/some/path', { config: ['http.proxy=someproxy'] });
+const git = simpleGit('.');
 
 // any command executed will be prefixed with this config
 // runs: git -c http.proxy=someproxy pull
-await git.pull();
+await git.reset(ResetMode.HARD)
+await git.pull({branch: "main"});
